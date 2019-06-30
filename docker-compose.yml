@@ -9,9 +9,10 @@ services:
       - "67:67"
       - "80:80"
     environment:
-      DNS1: "dnsmasq"
+      DNS1: dnsmasq
       WEBPASSWORD: "${PIHOLE_WEBPASSWORD}"
       ServerIP: "${SERVER_IP}"
+    depends_on: dnsmasq
   dnsmasq:
     build: ./dnsmasq/
     cap_add:
