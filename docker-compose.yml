@@ -14,4 +14,6 @@ services:
       ServerIP: "${SERVER_IP}"
   dnsmasq:
     build: ./dnsmasq/
+    cap_add:
+      - NET_ADMIN
 
