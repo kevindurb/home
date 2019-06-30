@@ -1,2 +1,2 @@
-FROM andyshinn/dnsma:latest
+FROM andyshinn/dnsmasq:latest
 COPY ./resolv.conf /etc/
