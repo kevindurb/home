@@ -12,7 +12,8 @@ services:
       DNS1: dnsmasq
       WEBPASSWORD: "${PIHOLE_WEBPASSWORD}"
       ServerIP: "${SERVER_IP}"
-    depends_on: dnsmasq
+    depends_on:
+      - dnsmasq
   dnsmasq:
     build: ./dnsmasq/
     cap_add:
