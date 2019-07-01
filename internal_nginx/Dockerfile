@@ -1,3 +1,3 @@
 FROM nginx:latest
 
-COPY ./nginx.conf /etc/nginx/
+COPY ./home.conf /etc/nginx/sites-enabled/
