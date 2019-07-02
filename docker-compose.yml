@@ -16,3 +16,11 @@ services:
     build: ./internal_nginx
     ports:
       - "${WEB_PORT}:80"
+  home_assistant:
+    build: ./home_assistant
+    environment:
+      HOME_LATITUDE: "${HOME_LATITUDE}"
+      HOME_LONGITUDE: "${HOME_LONGITUDE}"
+      HOME_ELEVATION: "${HOME_ELEVATION}"
+      SIMPLISAFE_USERNAME: "${SIMPLISAFE_USERNAME}"
+      SIMPLISAFE_PASSWORD: "${SIMPLISAFE_PASSWORD}"

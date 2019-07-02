@@ -1,0 +1,26 @@
+homeassistant:
+  name: Home
+  latitude: !env_var HOME_LATITUDE
+  longitude: !env_var HOME_LONGITUDE
+  elevation: !env_var HOME_ELEVATION
+  unit_system: imperial
+  time_zone: America/Denver
+
+config:
+frontend:
+# history:
+# logbook:
+# map:
+# person:
+# system_health:
+# updater:
+
+simplisafe:
+  accounts:
+    - username: !env_var SIMPLISAFE_USERNAME
+      password: !env_var SIMPLISAFE_PASSWORD
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+zone: !include zones.yaml
