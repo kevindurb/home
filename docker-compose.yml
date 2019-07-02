@@ -15,4 +15,4 @@ services:
   internal_nginx:
     build: ./internal_nginx
     ports:
-      - "80:80"
+      - "${WEB_PORT}:80"
