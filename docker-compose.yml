@@ -24,3 +24,5 @@ services:
       HOME_ELEVATION: "${HOME_ELEVATION}"
       SIMPLISAFE_USERNAME: "${SIMPLISAFE_USERNAME}"
       SIMPLISAFE_PASSWORD: "${SIMPLISAFE_PASSWORD}"
+  node_red:
+    build: ./node_red
