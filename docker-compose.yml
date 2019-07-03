@@ -31,5 +31,8 @@ services:
       - "home_assistant_config:/config"
   node_red:
     build: ./node_red
+    volumes:
+      - "node_red_data:/data"
 volumes:
   home_assistant_config:
+  node_red_data:
