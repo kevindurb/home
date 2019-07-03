@@ -8,17 +8,24 @@ homeassistant:
 
 config:
 frontend:
-# history:
-# logbook:
-# map:
-# person:
-# system_health:
-# updater:
+history:
+logbook:
+map:
+person:
+system_health:
 
 simplisafe:
   accounts:
     - username: !env_var SIMPLISAFE_USERNAME
       password: !env_var SIMPLISAFE_PASSWORD
+
+weather:
+  platform: darksky
+  api_key: !env_var DARKSKY_API_KEY
+
+nest:
+  client_id: !env_var NEST_CLIENT_ID
+  client_secret: !env_var NEST_SECRET
 
 group: !include groups.yaml
 automation: !include automations.yaml
