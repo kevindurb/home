@@ -24,5 +24,9 @@ services:
       HOME_ELEVATION: "${HOME_ELEVATION}"
       SIMPLISAFE_USERNAME: "${SIMPLISAFE_USERNAME}"
       SIMPLISAFE_PASSWORD: "${SIMPLISAFE_PASSWORD}"
+    volumes:
+      - "home_assistant_config:/config"
   node_red:
     build: ./node_red
+volumes:
+  home_assistant_config:
