@@ -49,6 +49,12 @@ services:
       - "certbot_conf:/etc/letsencrypt"
       - "certbot_www:/var/www/certbot"
 
+  bastion:
+    build: ./bastion
+
+  jenkins:
+    image: jenkins/jenkins:alpine
+
 volumes:
   home_assistant_config:
   node_red_data:
