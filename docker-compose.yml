@@ -38,6 +38,7 @@ services:
     volumes:
       - "home_assistant_config:/config"
       - "/dev/ttyUSB1:/dev/ttyUSB1"
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
 
   node_red:
     build: ./node_red
