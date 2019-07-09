@@ -37,6 +37,7 @@ services:
       NEST_SECRET: "${NEST_SECRET}"
     volumes:
       - "home_assistant_config:/config"
+      - "/dev/ttyUSB1:/dev/ttyUSB1"
 
   node_red:
     build: ./node_red
