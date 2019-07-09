@@ -54,9 +54,12 @@ services:
 
   jenkins:
     image: jenkins/jenkins:alpine
+    volumes:
+      - "jenkins_home:/var/jenkins_home"
 
 volumes:
   home_assistant_config:
   node_red_data:
   certbot_conf:
   certbot_www:
+  jenkins_home:
