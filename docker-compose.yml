@@ -11,6 +11,7 @@ services:
       - node_red
       - jenkins
       - prometheus
+      - kibana
 
   # external_nginx:
   #   build: ./external_nginx
@@ -95,9 +96,11 @@ services:
 
   elasticsearch:
     image: elasticsearch:7.2.0
+    environment:
+      discovery.type: single-node
 
   kibana:
-    image: kibana:7.2.0
+    build: ./kibana
     depends_on:
       - elasticsearch
 
