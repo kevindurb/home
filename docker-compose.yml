@@ -80,10 +80,11 @@ services:
     - /var/lib/docker/:/var/lib/docker:ro
 
   logspout:
-    image: gliderlabs/logspout
+    build: ./logspout
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-    command: syslog://logstash:5000
+    environment:
+      ROUTE_URIS: logstash://logstash:5000
     depends_on:
       - logstash
 
