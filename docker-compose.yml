@@ -70,9 +70,13 @@ services:
 
   prometheus:
     build: ./prometheus
+    volumes:
+    - prometheus:/etc/prometheus
 
   cadvisor:
     image: google/cadvisor:latest
+    ports:
+    - "8081:8080"
     volumes:
     - /:/rootfs:ro
     - /var/run:/var/run:rw
@@ -111,3 +115,4 @@ volumes:
   certbot_conf:
   certbot_www:
   jenkins_home:
+  prometheus:
