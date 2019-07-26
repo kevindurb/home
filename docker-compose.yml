@@ -11,7 +11,10 @@ services:
       - node_red
       - jenkins
       - prometheus
-      - kibana
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://${SERVER_IP}:12201"
 
   # external_nginx:
   #   build: ./external_nginx
@@ -32,6 +35,10 @@ services:
       DNS2: "208.67.220.220"
       WEBPASSWORD: "${PIHOLE_WEBPASSWORD}"
       ServerIP: "${SERVER_IP}"
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://${SERVER_IP}:12201"
 
   home_assistant:
     build: ./home_assistant
@@ -48,30 +55,54 @@ services:
       - "home_assistant_config:/config"
       # - "/dev/ttyUSB1:/dev/ttyUSB1"
       # - "/dev/ttyUSB0:/dev/ttyUSB0"
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://${SERVER_IP}:12201"
 
   node_red:
     build: ./node_red
     volumes:
       - "node_red_data:/data"
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://${SERVER_IP}:12201"
 
   certbot:
     image: certbot/certbot
     volumes:
       - "certbot_conf:/etc/letsencrypt"
       - "certbot_www:/var/www/certbot"
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://${SERVER_IP}:12201"
 
   bastion:
     build: ./bastion
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://${SERVER_IP}:12201"
 
   jenkins:
     image: jenkins/jenkins:alpine
     volumes:
       - "jenkins_home:/var/jenkins_home"
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://${SERVER_IP}:12201"
 
   prometheus:
     build: ./prometheus
     volumes:
     - prometheus:/etc/prometheus
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://${SERVER_IP}:12201"
 
   cadvisor:
     image: google/cadvisor:latest
@@ -82,32 +113,10 @@ services:
     - /var/run:/var/run:rw
     - /sys:/sys:ro
     - /var/lib/docker/:/var/lib/docker:ro
-
-  logspout:
-    build: ./logspout
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
-    environment:
-      ROUTE_URIS: logstash://logstash:5000
-    depends_on:
-      - logstash
-
-  logstash:
-    build: ./logstash
-    environment:
-      LOGSPOUT: ignore
-    depends_on:
-      - elasticsearch
-
-  elasticsearch:
-    image: elasticsearch:7.2.0
-    environment:
-      discovery.type: single-node
-
-  kibana:
-    build: ./kibana
-    depends_on:
-      - elasticsearch
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://${SERVER_IP}:12201"
 
 volumes:
   home_assistant_config:
