@@ -118,6 +118,23 @@ services:
       options:
         gelf-address: "udp://${SERVER_IP}:12201"
 
+  logstash:
+    build: ./logstash
+    ports:
+      - "12201:12201"
+    depends_on:
+      - elasticsearch
+
+  elasticsearch:
+    image: elasticsearch:7.2.0
+    environment:
+      discovery.type: single-node
+
+  kibana:
+    build: ./kibana
+    depends_on:
+      - elasticsearch
+
 volumes:
   home_assistant_config:
   node_red_data:
