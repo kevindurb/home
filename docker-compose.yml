@@ -11,10 +11,11 @@ services:
       - node_red
       - jenkins
       - prometheus
+      - kibana
     logging:
       driver: gelf
       options:
-        gelf-address: "udp://${SERVER_IP}:12201"
+        gelf-address: "tcp://localhost:12201"
 
   # external_nginx:
   #   build: ./external_nginx
@@ -26,10 +27,10 @@ services:
 
   pihole:
     build: ./pihole
-    ports:
-      - "${SERVER_IP}:53:53"
-      - "${SERVER_IP}:53:53/udp"
-      - "${SERVER_IP}:67:67"
+    # ports:
+    #   - "${SERVER_IP}:53:53"
+    #   - "${SERVER_IP}:53:53/udp"
+    #   - "${SERVER_IP}:67:67"
     environment:
       DNS1: "208.67.222.222"
       DNS2: "208.67.220.220"
@@ -38,7 +39,7 @@ services:
     logging:
       driver: gelf
       options:
-        gelf-address: "udp://${SERVER_IP}:12201"
+        gelf-address: "tcp://localhost:12201"
 
   home_assistant:
     build: ./home_assistant
@@ -58,7 +59,7 @@ services:
     logging:
       driver: gelf
       options:
-        gelf-address: "udp://${SERVER_IP}:12201"
+        gelf-address: "tcp://localhost:12201"
 
   node_red:
     build: ./node_red
@@ -67,7 +68,7 @@ services:
     logging:
       driver: gelf
       options:
-        gelf-address: "udp://${SERVER_IP}:12201"
+        gelf-address: "tcp://localhost:12201"
 
   certbot:
     image: certbot/certbot
@@ -77,14 +78,17 @@ services:
     logging:
       driver: gelf
       options:
-        gelf-address: "udp://${SERVER_IP}:12201"
+        gelf-address: "tcp://localhost:12201"
 
   bastion:
     build: ./bastion
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./:/var/home"
     logging:
       driver: gelf
       options:
-        gelf-address: "udp://${SERVER_IP}:12201"
+        gelf-address: "tcp://localhost:12201"
 
   jenkins:
     image: jenkins/jenkins:alpine
@@ -93,7 +97,7 @@ services:
     logging:
       driver: gelf
       options:
-        gelf-address: "udp://${SERVER_IP}:12201"
+        gelf-address: "tcp://localhost:12201"
 
   prometheus:
     build: ./prometheus
@@ -102,7 +106,7 @@ services:
     logging:
       driver: gelf
       options:
-        gelf-address: "udp://${SERVER_IP}:12201"
+        gelf-address: "tcp://localhost:12201"
 
   cadvisor:
     image: google/cadvisor:latest
@@ -116,7 +120,7 @@ services:
     logging:
       driver: gelf
       options:
-        gelf-address: "udp://${SERVER_IP}:12201"
+        gelf-address: "tcp://localhost:12201"
 
   logstash:
     build: ./logstash
