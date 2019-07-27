@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage ('Build') {
       steps {
-        sh("ssh root:password@bastion docker-compose -f /var/home/docker-compose.yml up")
+        sh("ssh root:password@bastion 'docker-compose -f /var/home/docker-compose.yml up'")
       }
     }
   }
