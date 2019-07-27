@@ -91,7 +91,7 @@ services:
         gelf-address: "tcp://localhost:12201"
 
   jenkins:
-    image: jenkins/jenkins:alpine
+    image: jenkins/jenkins:centos
     volumes:
       - "jenkins_home:/var/jenkins_home"
     logging:
