@@ -9,13 +9,9 @@ services:
       - pihole
       - home_assistant
       - node_red
-      - jenkins
+      # - jenkins
       - prometheus
-      - kibana
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "tcp://localhost:12201"
+      # - kibana
 
   # external_nginx:
   #   build: ./external_nginx
@@ -27,19 +23,15 @@ services:
 
   pihole:
     build: ./pihole
-    # ports:
-    #   - "${SERVER_IP}:53:53"
-    #   - "${SERVER_IP}:53:53/udp"
-    #   - "${SERVER_IP}:67:67"
+    ports:
+      - "${SERVER_IP}:53:53"
+      - "${SERVER_IP}:53:53/udp"
+      - "${SERVER_IP}:67:67"
     environment:
       DNS1: "208.67.222.222"
       DNS2: "208.67.220.220"
       WEBPASSWORD: "${PIHOLE_WEBPASSWORD}"
       ServerIP: "${SERVER_IP}"
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "tcp://localhost:12201"
 
   home_assistant:
     build: ./home_assistant
@@ -56,57 +48,33 @@ services:
       - "home_assistant_config:/config"
       # - "/dev/ttyUSB1:/dev/ttyUSB1"
       # - "/dev/ttyUSB0:/dev/ttyUSB0"
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "tcp://localhost:12201"
 
   node_red:
     build: ./node_red
     volumes:
       - "node_red_data:/data"
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "tcp://localhost:12201"
 
-  certbot:
-    image: certbot/certbot
-    volumes:
-      - "certbot_conf:/etc/letsencrypt"
-      - "certbot_www:/var/www/certbot"
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "tcp://localhost:12201"
+  # certbot:
+  #   image: certbot/certbot
+  #   volumes:
+  #     - "certbot_conf:/etc/letsencrypt"
+  #     - "certbot_www:/var/www/certbot"
 
-  bastion:
-    build: ./bastion
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
-      - "./:/var/home"
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "tcp://localhost:12201"
+  # bastion:
+  #   build: ./bastion
+  #   volumes:
+  #     - "/var/run/docker.sock:/var/run/docker.sock"
+  #     - "./:/var/home"
 
-  jenkins:
-    image: jenkins/jenkins:centos
-    volumes:
-      - "jenkins_home:/var/jenkins_home"
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "tcp://localhost:12201"
+  # jenkins:
+  #   image: jenkins/jenkins:centos
+  #   volumes:
+  #     - "jenkins_home:/var/jenkins_home"
 
   prometheus:
     build: ./prometheus
     volumes:
     - prometheus:/etc/prometheus
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "tcp://localhost:12201"
 
   cadvisor:
     image: google/cadvisor:latest
@@ -117,27 +85,23 @@ services:
     - /var/run:/var/run:rw
     - /sys:/sys:ro
     - /var/lib/docker/:/var/lib/docker:ro
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "tcp://localhost:12201"
 
-  logstash:
-    build: ./logstash
-    ports:
-      - "12201:12201"
-    depends_on:
-      - elasticsearch
+  # logstash:
+  #   build: ./logstash
+  #   ports:
+  #     - "12201:12201"
+  #   depends_on:
+  #     - elasticsearch
 
-  elasticsearch:
-    image: elasticsearch:7.2.0
-    environment:
-      discovery.type: single-node
+  # elasticsearch:
+  #   image: elasticsearch:7.2.0
+  #   environment:
+  #     discovery.type: single-node
 
-  kibana:
-    build: ./kibana
-    depends_on:
-      - elasticsearch
+  # kibana:
+  #   build: ./kibana
+  #   depends_on:
+  #     - elasticsearch
 
 volumes:
   home_assistant_config:
