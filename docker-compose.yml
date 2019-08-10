@@ -62,7 +62,7 @@ services:
   node_red:
     build: ./node_red
     environment:
-      VIRTUAL_HOST: "hass.*"
+      VIRTUAL_HOST: "nodered.*"
       VIRTUAL_PORT: "1880"
       NETWORK_ACCESS: "internal"
     volumes:
