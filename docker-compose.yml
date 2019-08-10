@@ -68,6 +68,13 @@ services:
     volumes:
       - "node_red_data:/data"
 
+  motioneye:
+    image: ccrisan/motioneye
+    environment:
+      VIRTUAL_HOST: "motioneye.*"
+      VIRTUAL_PORT: "8765"
+      NETWORK_ACCESS: "internal"
+
   # bastion:
   #   build: ./bastion
   #   volumes:
