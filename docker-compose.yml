@@ -50,7 +50,7 @@ services:
       NEST_SECRET: "${NEST_SECRET}"
       VIRTUAL_HOST: "hass.*"
       VIRTUAL_PORT: "8123"
-      LETSENCRYPT_HOST: "hass.${EXTERNAL_HOST}"
+      LETSENCRYPT_HOST: "hass.kevindurbin.com"
     volumes:
       - "home_assistant_config:/config"
       # - "/dev/ttyUSB1:/dev/ttyUSB1"
