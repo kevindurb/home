@@ -8,9 +8,9 @@ services:
       - "443:443"
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
-      - "nginx_certs:/etc/nginx/certs"
-      - "nginx_html:/usr/share/nginx/html"
+      - "nginx_certs:/etc/nginx/certs:ro"
       - "nginx_vhost:/etc/nginx/vhost.d"
+      - "nginx_html:/usr/share/nginx/html"
 
   letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
@@ -18,9 +18,9 @@ services:
       DEFAULT_EMAIL: "kevindurb@gmail.com"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "nginx_certs:/etc/nginx/certs"
-      - "nginx_html:/usr/share/nginx/html"
+      - "nginx_certs:/etc/nginx/certs:rw"
       - "nginx_vhost:/etc/nginx/vhost.d"
+      - "nginx_html:/usr/share/nginx/html"
 
   pihole:
     build: ./pihole
@@ -115,6 +115,6 @@ volumes:
   node_red_data:
   jenkins_home:
   prometheus:
-  nginx_vhost:
   nginx_certs:
   nginx_html:
+  nginx_vhost:
