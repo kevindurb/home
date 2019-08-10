@@ -69,7 +69,7 @@ services:
       - "node_red_data:/data"
 
   motioneye:
-    image: ccrisan/motioneye
+    image: ccrisan/motioneye:master-amd64
     environment:
       VIRTUAL_HOST: "motioneye.*"
       VIRTUAL_PORT: "8765"
