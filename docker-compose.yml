@@ -71,9 +71,9 @@ services:
   motioneye:
     image: ccrisan/motioneye:master-amd64
     environment:
-      VIRTUAL_HOST: "motioneye.*"
+      LETSENCRYPT_HOST: "motioneye.kevindurbin.com"
+      VIRTUAL_HOST: "motioneye.kevindurbin.com"
       VIRTUAL_PORT: "8765"
-      NETWORK_ACCESS: "internal"
 
   # bastion:
   #   build: ./bastion
