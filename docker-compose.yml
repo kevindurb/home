@@ -51,7 +51,7 @@ services:
       DARKSKY_API_KEY: "${DARKSKY_API_KEY}"
       NEST_CLIENT_ID: "${NEST_CLIENT_ID}"
       NEST_SECRET: "${NEST_SECRET}"
-      VIRTUAL_HOST: "hass.*"
+      VIRTUAL_HOST: "hass.kevindurbin.com"
       VIRTUAL_PORT: "8123"
       LETSENCRYPT_HOST: "hass.kevindurbin.com"
     volumes:
