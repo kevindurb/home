@@ -32,6 +32,7 @@ services:
       - "${SERVER_IP}:53:53/udp"
       - "${SERVER_IP}:67:67"
     volumes:
+      - "/etc/localtime:/etc/localtime:ro"
       - "${PWD}/pihole/02-internal.conf:/etc/dnsmasq.d/02-internal.conf"
     environment:
       DNS1: "208.67.222.222"
@@ -68,15 +69,16 @@ services:
       VIRTUAL_PORT: "1880"
       NETWORK_ACCESS: "internal"
     volumes:
+      - "/etc/localtime:/etc/localtime:ro"
       - "node_red_data:/data"
       - "${PWD}/node_red/settings.js:/data/settings.js"
 
   motioneye:
     image: ccrisan/motioneye:master-amd64
     volumes:
-    - "/etc/localtime:/etc/localtime:ro"
-    - "motioneye_etc:/etc/motioneye"
-    - "motioneye_var_lib:/var/lib/motioneye"
+      - "/etc/localtime:/etc/localtime:ro"
+      - "motioneye_etc:/etc/motioneye"
+      - "motioneye_var_lib:/var/lib/motioneye"
     environment:
       LETSENCRYPT_HOST: "motioneye.kevindurbin.com"
       VIRTUAL_HOST: "motioneye.kevindurbin.com"
@@ -89,8 +91,9 @@ services:
       VIRTUAL_PORT: "9090"
       NETWORK_ACCESS: "internal"
     volumes:
-    - "${PWD}/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
-    - prometheus:/etc/prometheus
+      - "/etc/localtime:/etc/localtime:ro"
+      - "${PWD}/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
+      - prometheus:/etc/prometheus
 
   cadvisor:
     image: google/cadvisor:latest
