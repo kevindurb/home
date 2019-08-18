@@ -59,8 +59,8 @@ services:
       LETSENCRYPT_HOST: "hass.kevindurbin.com"
     volumes:
       - "${PWD}/home_assistant/config:/config"
-      # - "/dev/ttyUSB1:/dev/ttyUSB1"
-      # - "/dev/ttyUSB0:/dev/ttyUSB0"
+      - "/dev/ttyUSB1:/dev/ttyUSB1"
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
 
   node_red:
     image: nodered/node-red-docker:latest

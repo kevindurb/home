@@ -29,6 +29,12 @@ nest:
   client_id: !env_var NEST_CLIENT_ID
   client_secret: !env_var NEST_SECRET
 
+zwave:
+  usb_path: /dev/ttyUSB0
+
+zigbee:
+  usb_path: /dev/ttyUSB1
+
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
