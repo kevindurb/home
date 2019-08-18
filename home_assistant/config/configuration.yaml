@@ -32,7 +32,7 @@ nest:
 zwave:
   usb_path: /dev/ttyUSB0
 
-zigbee:
+zha:
   usb_path: /dev/ttyUSB1
 
 group: !include groups.yaml

@@ -59,6 +59,7 @@ services:
       LETSENCRYPT_HOST: "hass.kevindurbin.com"
     volumes:
       - "${PWD}/home_assistant/config:/config"
+    devices:
       - "/dev/ttyUSB1:/dev/ttyUSB1"
       - "/dev/ttyUSB0:/dev/ttyUSB0"
 
