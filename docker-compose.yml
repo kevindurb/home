@@ -103,6 +103,20 @@ services:
     - /sys:/sys:ro
     - /var/lib/docker/:/var/lib/docker:ro
 
+  nextcloud:
+    image: nextcloud:stable-fpm-alpine
+    environment:
+      LETSENCRYPT_HOST: "nextcloud.kevindurbin.com"
+      VIRTUAL_HOST: "nextcloud.kevindurbin.com"
+      VIRTUAL_PORT: "9000"
+    volumes:
+      - "/storage/nextcloud_data:/var/www/html"
+
+  postgres:
+    image: postgres:latest
+    volumes:
+      - "/storage/postgres_data:/var/lib/postgresql/data"
+
 volumes:
   node_red_data:
   prometheus:
