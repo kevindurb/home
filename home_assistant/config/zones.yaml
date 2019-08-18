@@ -2,12 +2,3 @@
   latitude: !env_var HOME_LATITUDE
   longitude: !env_var HOME_LONGITUDE
   radius: 100
-  icon: mdi:account-multiple
-  passive: false
-
-- name: Work
-  latitude: !env_var HOME_LATITUDE
-  longitude: !env_var HOME_LONGITUDE
-  radius: 100
-  icon: mdi:account-multiple
-  passive: false
