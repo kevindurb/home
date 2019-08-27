@@ -104,22 +104,22 @@ services:
     - /sys:/sys:ro
     - /var/lib/docker/:/var/lib/docker:ro
 
-  nextcloud:
-    image: nextcloud:stable-apache
-    environment:
-      LETSENCRYPT_HOST: "nextcloud.kevindurbin.com"
-      VIRTUAL_HOST: "nextcloud.kevindurbin.com"
-      VIRTUAL_PORT: "80"
-    volumes:
-      - "/storage/nextcloud_data:/var/www/html"
+  # nextcloud:
+  #   image: nextcloud:stable-apache
+  #   environment:
+  #     LETSENCRYPT_HOST: "nextcloud.kevindurbin.com"
+  #     VIRTUAL_HOST: "nextcloud.kevindurbin.com"
+  #     VIRTUAL_PORT: "80"
+  #   volumes:
+  #     - "/storage/nextcloud_data:/var/www/html"
 
-  postgres:
-    image: postgres:latest
-    environment:
-      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
-      POSTGRES_USER: "nextcloud"
-    volumes:
-      - "/storage/postgres_data:/var/lib/postgresql/data"
+  # postgres:
+  #   image: postgres:latest
+  #   environment:
+  #     POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+  #     POSTGRES_USER: "nextcloud"
+  #   volumes:
+  #     - "/storage/postgres_data:/var/lib/postgresql/data"
 
 volumes:
   node_red_data:
