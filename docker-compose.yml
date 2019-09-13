@@ -47,7 +47,7 @@ services:
       NETWORK_ACCESS: "internal"
 
   home_assistant:
-    image: homeassistant/home-assistant:latest
+    image: homeassistant/home-assistant:stable
     restart: always
     environment:
       HOME_LATITUDE: "${HOME_LATITUDE}"
@@ -59,7 +59,6 @@ services:
       NEST_CLIENT_ID: "${NEST_CLIENT_ID}"
       NEST_SECRET: "${NEST_SECRET}"
       VIRTUAL_HOST: "hass.kevindurbin.com"
-      VIRTUAL_PORT: "8123"
       LETSENCRYPT_HOST: "hass.kevindurbin.com"
     volumes:
       - "${PWD}/home_assistant/config:/config"
