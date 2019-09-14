@@ -1,0 +1,6 @@
+kitchen_lights:
+  name: Kitchen Lights
+  entities:
+    - light.ledvance_br30_rgbw_0003f771_1
+    - light.ledvance_br30_rgbw_0003fd27_1
+    - light.ledvance_br30_rgbw_000407ed_1
