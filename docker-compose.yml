@@ -49,6 +49,8 @@ services:
   home_assistant:
     image: homeassistant/home-assistant:stable
     restart: always
+    ports:
+      - "8123:8123"
     environment:
       HOME_LATITUDE: "${HOME_LATITUDE}"
       HOME_LONGITUDE: "${HOME_LONGITUDE}"
