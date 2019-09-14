@@ -14,9 +14,6 @@ map:
 person:
 system_health:
 
-homekit:
-  auto_start: false
-
 notify:
 
 simplisafe:

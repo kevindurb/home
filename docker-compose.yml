@@ -49,7 +49,6 @@ services:
   home_assistant:
     image: homeassistant/home-assistant:stable
     restart: always
-    network_mode: host
     ports:
       - "8123:8123"
     environment:
