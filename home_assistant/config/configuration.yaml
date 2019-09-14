@@ -16,6 +16,7 @@ system_health:
 
 homekit:
   auto_start: false
+  ip_address: !env_var SERVER_IP
 
 notify:
 

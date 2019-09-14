@@ -51,7 +51,9 @@ services:
     restart: always
     ports:
       - "8123:8123"
+      - "51827:51827"
     environment:
+      SERVER_IP: "${SERVER_IP}"
       HOME_LATITUDE: "${HOME_LATITUDE}"
       HOME_LONGITUDE: "${HOME_LONGITUDE}"
       HOME_ELEVATION: "${HOME_ELEVATION}"
