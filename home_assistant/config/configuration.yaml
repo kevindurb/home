@@ -35,8 +35,9 @@ nest:
 zwave:
   usb_path: /dev/ttyUSB0
 
-zigbee:
-  device: /dev/ttyUSB1
+zha:
+  usb_path: /dev/ttyUSB1
+  database_path: /config/zigbee.db
 
 group: !include groups.yaml
 automation: !include automations.yaml
