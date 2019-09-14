@@ -1,2 +1,9 @@
 .env
 tags
+home_assistant/config/*
+
+!home_assistant/config/zones.yaml
+!home_assistant/config/groups.yaml
+!home_assistant/config/scripts.yaml
+!home_assistant/config/automations.yaml
+!home_assistant/config/configuration.yaml
