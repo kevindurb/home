@@ -49,9 +49,9 @@ services:
   home_assistant:
     image: homeassistant/home-assistant:stable
     restart: always
+    network_mode: host
     ports:
       - "8123:8123"
-      - "51827:51827"
     environment:
       SERVER_IP: "${SERVER_IP}"
       HOME_LATITUDE: "${HOME_LATITUDE}"
