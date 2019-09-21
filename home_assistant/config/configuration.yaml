@@ -16,10 +16,6 @@ system_health:
 
 notify:
 
-stream:
-
-camera:
-
 simplisafe:
   accounts:
     - username: !env_var SIMPLISAFE_USERNAME
