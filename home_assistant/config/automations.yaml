@@ -1,0 +1,3 @@
+- alias: 'Restart Home Assistant'
+  action:
+    service: homeassistant.restart
