@@ -20,6 +20,7 @@ simplisafe:
   accounts:
     - username: !env_var SIMPLISAFE_USERNAME
       password: !env_var SIMPLISAFE_PASSWORD
+      code: !env_var SIMPLISAFE_CODE
 
 weather:
   platform: darksky
